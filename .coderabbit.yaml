@@ -307,29 +307,28 @@ reviews:
           FAIL if no checklist or fewer than 8 items.
 
       - mode: "warning"
-        name: "Blast radius acceptable"
+        name: "Blast radius and spec-implementation alignment"
         instructions: >
-          Check the overall diff to ensure changes are focused:
+          Check that the diff is focused AND aligned with the specification:
+
+          Blast radius:
           1. Changes should be primarily in files related to the chosen issue
           2. No large-scale refactoring unrelated to the spec
           3. No "improvements" beyond the specification scope
           4. Ideally fewer than 15 files changed (excluding specs/docs)
-          If more than 20 non-spec/non-doc files are changed — FAIL.
-          If changes include files clearly unrelated to the issue — FAIL.
-          Otherwise PASS with a note about the blast radius.
 
-      - mode: "warning"
-        name: "Spec-implementation alignment"
-        instructions: >
-          Cross-check the specification against the implementation:
+          Spec-implementation alignment:
           1. Every Acceptance Criterion from the spec should have
              corresponding code changes
           2. Non-goals / Out-of-scope items should NOT have
              corresponding code changes
           3. If OpenSpec is used, tasks.md items should map to changes
           4. If BMAD is used, stories should map to changes
-          PASS if implementation aligns with spec.
-          FAIL if there are clear misalignments or scope violations.
+
+          FAIL if more than 20 non-spec/non-doc files changed,
+          if changes include files clearly unrelated to the issue,
+          or if there are clear misalignments or scope violations.
+          Otherwise PASS with a note about blast radius and alignment.
 
 chat:
   auto_reply: true
